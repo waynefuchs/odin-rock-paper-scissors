@@ -9,7 +9,10 @@ Implement a javascript browser console version of "Rock-Paper-Scissors"
 
 1. [x] Computer chooses [Rock, Paper, Scissors]
 2. [x] Get user input for [Rock, Paper, Scissors]
-3. [ ] Compare computer choice to user choice
-4. [ ] Determine Winner
+3. [x] Compare computer choice to user choice
+4. [x] Determine Winner
 
-## 
+## Divide and Conquer
+
+* [x] Convert the Plan into Code
+
