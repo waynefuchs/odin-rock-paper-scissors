@@ -1,0 +1,1 @@
+console.log("Add js to page method 1: Hello World!");
