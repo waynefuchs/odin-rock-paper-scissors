@@ -47,6 +47,9 @@ function game() {
     printScore();
 }
 
+// TODO: The return value from this should basically just be which player won
+// I'm not changing anything until I see what the updated version of this
+// is going to require.
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLocaleLowerCase();
     computerSelection = computerSelection.toLocaleLowerCase();  // This shouldn't be necessary, but doing it "just in case"
