@@ -4,14 +4,44 @@
     <meta charset="utf-8">
     <title>Foundations > JavaScript Basics > Project: Rock Paper Scissors</title>
     <link rel="stylesheet" href="rock-paper-scissors.css">
-    <script src="rock-paper-scissors.js"></script>
+    <script src="rock-paper-scissors.js" defer></script>
 </head>
 <!-- <body onload="console.log('Add js to page method 3: Hello World!');"> -->
 <body>
     <header>
         <h1>PROJECT: Rock Paper Scissors</h1>
-        <p>Let's play a game.</p>
     </header>
+
+    <section id="game">
+        <div id="scores">
+            <h2>Scores</h2>
+
+            <div class="score">
+                <label for="score-player">player</label>
+                <h3 id="score-player"></h3>    
+            </div>
+
+            <div class="score">
+                <label for="score-computer">computer</label>
+                <h3 id="score-computer"></h3>
+            </div>
+
+            <div class="score">
+                <label for="score-draw">draw</label>
+                <h3 id="score-draw"></h3>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button id="rock" class="rps-button">Rock</button>
+            <button id="paper" class="rps-button">Paper</button>
+            <button id="scissors" class="rps-button">Scissors</button>    
+        </div>
+
+        <p id="round-result"></p>
+
+        <p id="game-result"></p>
+    </section>
 
 
 </body>

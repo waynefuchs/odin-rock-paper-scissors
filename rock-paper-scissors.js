@@ -1,5 +1,13 @@
 // console.log("Add js to page method 1: Hello World!");
+// DOM objects
+const scorePlayer = document.querySelector("#score-player");
+const scoreComputer = document.querySelector("#score-computer");
+const scoreDraw = document.querySelector("#score-draw");
+const gameResult = document.querySelector("#game-result");
+const roundResult = document.querySelector("#round-result");
+const buttons = document.querySelectorAll("#game .rps-button");
 
+// internal variables
 const rockPaperScissors = ["rock", "paper", "scissors"];
 let score = {
     player: 0,
@@ -7,16 +15,35 @@ let score = {
     draw: 0
 }
 
-function computerPlay() {
-    return rockPaperScissors[getRandomInt(0, 2)];
+// Start execution here
+buttons.forEach(button => button.addEventListener("click", rpsButtonPushed));
+updateUI();
+
+function rpsButtonPushed(e)
+{
+    let playerSelection = this.id;
+    let computerSelection = computerPlay();
+    roundResult.textContent = playRound(playerSelection.toLocaleLowerCase(), computerSelection.toLocaleLowerCase());
+    updateUI();
 }
 
-function getUserInput() {
-    while(true) {
-        let userInput = prompt(`Please choose "Rock", "Paper", or "Scissors": `);
-        if(rockPaperScissors.includes(userInput.toLocaleLowerCase())) return userInput;
-        console.log("Invalid selection, please try again!");
+function isGameOver() {
+    if(score.player >= 5) 
+    {
+        gameResult.textContent = "You won! Congratulations!"
+        return true;
     }
+    
+    else if(score.computer >= 5) {
+        gameResult.textContent = "The computer won!";
+        return true;
+    }
+
+    return false;
+}
+
+function computerPlay() {
+    return rockPaperScissors[getRandomInt(0, 2)];
 }
 
 function getRandomInt(min, max) {
@@ -33,82 +60,55 @@ function printScore() {
     console.log(score);
 }
 
-function game() {
-    resetScore();
-
-    for(let roundNumber=1; roundNumber<=5; roundNumber++) 
-    {
-        let computerSelection = computerPlay();
-        let playerSelection = getUserInput();
-        let roundResult = playRound(playerSelection, computerSelection);
-        console.log(roundResult);    
-    }
-
-    printScore();
+function updateUI() {
+    scorePlayer.textContent = score.player.toString();
+    scoreComputer.textContent = score.computer.toString();
+    scoreDraw.textContent = score.draw.toString();
+    isGameOver();
 }
 
-// TODO: The return value from this should basically just be which player won
-// I'm not changing anything until I see what the updated version of this
-// is going to require.
 function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.toLocaleLowerCase();
-    computerSelection = computerSelection.toLocaleLowerCase();  // This shouldn't be necessary, but doing it "just in case"
+    if(isGameOver()) return `The game is over, no further input is allowed.`;
 
-    let computerWins = "You Lose!";
-    let playerWins = "You Win!";
-    let nobodyWins = "It's a draw!";
+    if(drawWins(playerSelection, computerSelection))
+        return `It's a draw! Both players picked ${computerSelection.capitalize()}`;
 
-    // It's a draw
+    if(computerWins(playerSelection, computerSelection))
+        return `You Lose! ${computerSelection.capitalize()} beats ${playerSelection.capitalize()}`;
+
+    // When it isn't a draw, and the computer didn't win: Player Wins
+    score.player++;
+    return `You Win! ${playerSelection.capitalize()} beats ${computerSelection.capitalize()}`;
+}
+
+function drawWins(playerSelection, computerSelection)
+{
     if(computerSelection === playerSelection) 
     {
         score.draw++;
-        return `${nobodyWins} Both players picked ${computerSelection.capitalize()}`;
+        return true;
     }
+    return false;
+}
 
-    // Computer Wins
+function computerWins(playerSelection, computerSelection)
+{
     if( (computerSelection === "rock" && playerSelection === "scissors")
-        || (computerSelection === "paper" && playerSelection === "rock") 
-        || (computerSelection === "scissors" && playerSelection === "paper")) 
-        {
-            score.computer++;
-            return `${computerWins} ${computerSelection.capitalize()} beats ${playerSelection.capitalize()}`;
-        }
-
-    // Player Wins
-    score.player++;
-    return `${playerWins} ${playerSelection.capitalize()} beats ${computerSelection.capitalize()}`;
-}
-
-
-// Function to generate 1.5M random numbers and report how many times that was selected
-// This led to me finding a bug in my getRandomInt() function
-// (Real test cases would be better here)
-// I'm not certain what the 'correct' way to implement tests in js is, yet
-// checkRandomSelection();
-function checkRandomSelection() {
-    let rock = 0;
-    let paper = 0;
-    let scissors = 0;
-
-    for(let x=0; x<1500000; x++) {
-        let y = getRandomInt(0, 2);
-        if(y == 0) rock++;
-        if(y == 1) paper++;
-        if(y == 2) scissors++;
+    || (computerSelection === "paper" && playerSelection === "rock") 
+    || (computerSelection === "scissors" && playerSelection === "paper")) 
+    {
+        score.computer++;
+        updateUI();
+        return true;
     }
-
-    console.log(`Rock:${rock} Paper:${paper} Scissors:${scissors}`);
+    return false;
 }
 
-// This is neat
-// Adds a 'capitalize' method to the string class that capitalizes the first character in a string
+// Adds a 'capitalize' method to the string class 
+// Capitalizes the first character in a string
 Object.defineProperty(String.prototype, 'capitalize', {
     value: function() {
       return this.charAt(0).toUpperCase() + this.slice(1);
     },
     enumerable: false
   });
-
-
-
-  game();
