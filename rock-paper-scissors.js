@@ -17,7 +17,21 @@ let score = {
 
 // Start execution here
 buttons.forEach(button => button.addEventListener("click", rpsButtonPushed));
+animateStart();
 updateUI();
+
+
+bounceTimes = 3*9;
+function animateStart() {
+    buttons.forEach(b => b.addEventListener('transitionend', removeTransition));
+    buttons.forEach(b => b.classList.toggle('hover-effect'));
+}
+function removeTransition(e) {
+    if(bounceTimes <= 0) return;
+    this.classList.toggle('hover-effect');
+    bounceTimes--;
+}
+
 
 function rpsButtonPushed(e)
 {

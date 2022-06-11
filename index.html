@@ -13,29 +13,43 @@
     </header>
 
     <section id="game">
-        <div id="scores">
+        
+        <div id="scoreboard">
             <h2>Scores</h2>
 
-            <div class="score">
-                <label for="score-player">player</label>
-                <h3 id="score-player"></h3>    
-            </div>
+            <div id="scores">
 
-            <div class="score">
-                <label for="score-computer">computer</label>
-                <h3 id="score-computer"></h3>
-            </div>
+                <div class="score">
+                    <label for="score-player">player</label>
+                    <h3 id="score-player"></h3>    
+                </div>
 
-            <div class="score">
-                <label for="score-draw">draw</label>
-                <h3 id="score-draw"></h3>
+                <div class="score">
+                    <label for="score-computer">computer</label>
+                    <h3 id="score-computer"></h3>
+                </div>
+
+                <div class="score">
+                    <label for="score-draw">draw</label>
+                    <h3 id="score-draw"></h3>
+                </div>
+                
             </div>
         </div>
 
         <div class="buttons">
-            <button id="rock" class="rps-button">Rock</button>
-            <button id="paper" class="rps-button">Paper</button>
-            <button id="scissors" class="rps-button">Scissors</button>    
+            <div class="button">
+                <input type="image" src="rock_small.png" id="rock" class="rps-button">
+                <h3>Rock</h3>
+            </div>
+            <div class="button">
+                <input type="image" src="paper_small.png" id="paper" class="rps-button">
+                <h3>Paper</h3>
+            </div>
+            <div class="button">
+                <input type="image" src="scissors_small.png" id="scissors" class="rps-button">
+                <h3>Scissors</h3>
+            </div>
         </div>
 
         <p id="round-result"></p>
