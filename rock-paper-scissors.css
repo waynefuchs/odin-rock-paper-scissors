@@ -57,10 +57,22 @@ h3 {
 .rps-button {
     transform: scale(0.8);
     transition: all .1s ease;
+
+    animation-name: test;
+    animation-duration: 0.4s;
+    animation-iteration-count: 5;
 }
 
-.hover-effect {
-    transform: scale(1.0);
+@keyframes test {
+    0% {
+        transform: scale(0.8);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(0.8);
+    }
 }
 
 .rps-button:hover {
