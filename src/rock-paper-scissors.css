@@ -1,80 +1,87 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit&family=Rock+Salt&display=swap');
+/* @import url("https://fonts.googleapis.com/css2?family=Kanit&family=Rock+Salt&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+:root {
+  --color-bg: #ffdf7a;
+  --color-fg: #323232;
+  --icon-small: 0.7;
+  --icon-large: 1;
+  --icon-duration: 0.15s;
+}
 
 body {
-    font-family: 'Rock Salt';
-    background-color: #ffdf7a;
+  font-family: "Montserrat";
+  background-color: var(--color-bg);
+  color: var(--color-fg);
 }
 
 label {
-    display: inline;
+  display: inline;
 }
 
 #scoreboard {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-#scores {
-    display: flex;
-    justify-content: center;
+#team {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .score {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 h1 {
-    text-align: center;
-    width: 100vw;
+  text-align: center;
 }
 
 #game {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.buttons {
-    display: flex;
+.choice-container {
+  display: flex;
+  width: 100vw;
 }
 
 .button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-h3 {
-    color: #323232;
-}
-
-.rps-button {
-    transform: scale(0.8);
-    transition: all .1s ease;
-
-    animation-name: test;
-    animation-duration: 0.4s;
-    animation-iteration-count: 5;
-}
-
-@keyframes test {
-    0% {
-        transform: scale(0.8);
-    }
-    50% {
-        transform: scale(1.2);
-    }
-    100% {
-        transform: scale(0.8);
-    }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: calc(100% / 3);
 }
 
 .rps-button:hover {
-    transform: scale(1.0);
+  transform: scale(1);
+}
+
+.rps-button {
+  transform: scale(0.7);
+  transition: all var(--icon-duration) ease-in-out;
+
+  /* for brief animation on load */
+  animation-name: grow;
+  animation-duration: var(--icon-duration);
+  animation-iteration-count: 4;
+  animation-direction: alternate;
+}
+
+@keyframes grow {
+  from {
+    transform: scale(var(--icon-small));
+  }
+  to {
+    transform: scale(var(--icon-large));
+  }
 }
