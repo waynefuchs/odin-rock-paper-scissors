@@ -20,6 +20,7 @@ buttons.forEach((button) => button.addEventListener("click", rpsButtonPushed));
 updateUI();
 
 function rpsButtonPushed(e) {
+  runTouchAnimation(e);
   let playerSelection = this.id;
   let computerSelection = computerPlay();
   roundResult.textContent = playRound(
@@ -27,6 +28,18 @@ function rpsButtonPushed(e) {
     computerSelection.toLocaleLowerCase()
   );
   updateUI();
+}
+
+function runTouchAnimation(e) {
+  console.log(e);
+  e.target.classList.add("puke");
+  e.target.addEventListener(
+    "transitionend",
+    (e) => {
+      e.target.classList.remove("puke");
+    },
+    true
+  );
 }
 
 function isGameOver() {

@@ -1,4 +1,3 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Kanit&family=Rock+Salt&display=swap"); */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 :root {
@@ -63,12 +62,14 @@ h1 {
   max-width: calc(100% / 3);
 }
 
-.rps-button:hover {
-  transform: scale(1);
+@media (hover: hover) {
+  .rps-button:hover {
+    transform: scale(1);
+  }
 }
 
 .rps-button {
-  transform: scale(0.7);
+  transform: scale(var(--icon-small));
   transition: all var(--icon-duration) ease-in-out;
 
   /* for brief animation on load */
@@ -76,6 +77,8 @@ h1 {
   animation-duration: var(--icon-duration);
   animation-iteration-count: 4;
   animation-direction: alternate;
+  animation-play-state: running;
+  animation-delay: 1s;
 }
 
 @keyframes grow {
@@ -85,4 +88,8 @@ h1 {
   to {
     transform: scale(var(--icon-large));
   }
+}
+
+.puke {
+  transform: scale(var(--icon-large));
 }
