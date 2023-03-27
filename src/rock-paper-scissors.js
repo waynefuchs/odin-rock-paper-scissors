@@ -10,106 +10,102 @@ const buttons = document.querySelectorAll("#game .rps-button");
 // internal variables
 const rockPaperScissors = ["rock", "paper", "scissors"];
 let score = {
-    player: 0,
-    computer: 0,
-    draw: 0
-}
+  player: 0,
+  computer: 0,
+  draw: 0,
+};
 
 // Start execution here
-buttons.forEach(button => button.addEventListener("click", rpsButtonPushed));
+buttons.forEach((button) => button.addEventListener("click", rpsButtonPushed));
 updateUI();
 
-
-function rpsButtonPushed(e)
-{
-    let playerSelection = this.id;
-    let computerSelection = computerPlay();
-    roundResult.textContent = playRound(playerSelection.toLocaleLowerCase(), computerSelection.toLocaleLowerCase());
-    updateUI();
+function rpsButtonPushed(e) {
+  let playerSelection = this.id;
+  let computerSelection = computerPlay();
+  roundResult.textContent = playRound(
+    playerSelection.toLocaleLowerCase(),
+    computerSelection.toLocaleLowerCase()
+  );
+  updateUI();
 }
 
 function isGameOver() {
-    if(score.player >= 5) 
-    {
-        gameResult.textContent = "You won! Congratulations!"
-        return true;
-    }
-    
-    else if(score.computer >= 5) {
-        gameResult.textContent = "The computer won!";
-        return true;
-    }
+  if (score.player >= 5) {
+    gameResult.textContent = "You won the game! Congratulations!";
+    return true;
+  } else if (score.computer >= 5) {
+    gameResult.textContent = "The computer won!";
+    return true;
+  }
 
-    return false;
+  return false;
 }
 
 function computerPlay() {
-    return rockPaperScissors[getRandomInt(0, 2)];
+  return rockPaperScissors[getRandomInt(0, 2)];
 }
 
 function getRandomInt(min, max) {
-    return Math.floor((Math.random() * (max - min + 1)) + min);
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 function resetScore() {
-    score.player = 0;
-    score.computer = 0;
-    score.draw = 0;
+  score.player = 0;
+  score.computer = 0;
+  score.draw = 0;
 }
 
 function printScore() {
-    console.log(score);
+  console.log(score);
 }
 
 function updateUI() {
-    scorePlayer.textContent = score.player.toString();
-    scoreComputer.textContent = score.computer.toString();
-    scoreDraw.textContent = score.draw.toString();
-    isGameOver();
+  scorePlayer.textContent = score.player.toString();
+  scoreComputer.textContent = score.computer.toString();
+  scoreDraw.textContent = score.draw.toString();
+  isGameOver();
 }
 
 function playRound(playerSelection, computerSelection) {
-    if(isGameOver()) return `The game is over, no further input is allowed.`;
+  if (isGameOver()) return `The game is over, no further input is allowed.`;
 
-    if(drawWins(playerSelection, computerSelection))
-        return `It's a draw! Both players picked ${computerSelection.capitalize()}`;
+  if (drawWins(playerSelection, computerSelection))
+    return `It's a draw! Both players picked ${computerSelection.capitalize()}`;
 
-    if(computerWins(playerSelection, computerSelection))
-        return `You Lose! ${computerSelection.capitalize()} beats ${playerSelection.capitalize()}`;
+  if (computerWins(playerSelection, computerSelection))
+    return `You Lose! ${computerSelection.capitalize()} beats ${playerSelection.capitalize()}`;
 
-    // When it isn't a draw, and the computer didn't win: Player Wins
-    score.player++;
-    return `You Win! ${playerSelection.capitalize()} beats ${computerSelection.capitalize()}`;
+  // When it isn't a draw, and the computer didn't win: Player Wins
+  score.player++;
+  return `You win this round! ${playerSelection.capitalize()} beats ${computerSelection.capitalize()}`;
 }
 
-function drawWins(playerSelection, computerSelection)
-{
-    if(computerSelection === playerSelection) 
-    {
-        score.draw++;
-        return true;
-    }
-    return false;
+function drawWins(playerSelection, computerSelection) {
+  if (computerSelection === playerSelection) {
+    score.draw++;
+    return true;
+  }
+  return false;
 }
 
-function computerWins(playerSelection, computerSelection)
-{
-    if( (computerSelection === "rock" && playerSelection === "scissors")
-    || (computerSelection === "paper" && playerSelection === "rock") 
-    || (computerSelection === "scissors" && playerSelection === "paper")) 
-    {
-        score.computer++;
-        updateUI();
-        return true;
-    }
-    return false;
+function computerWins(playerSelection, computerSelection) {
+  if (
+    (computerSelection === "rock" && playerSelection === "scissors") ||
+    (computerSelection === "paper" && playerSelection === "rock") ||
+    (computerSelection === "scissors" && playerSelection === "paper")
+  ) {
+    score.computer++;
+    updateUI();
+    return true;
+  }
+  return false;
 }
 
-// Adds a 'capitalize' method to the string class 
+// Adds a 'capitalize' method to the string class
 // Capitalizes the first character in a string
-Object.defineProperty(String.prototype, 'capitalize', {
-    value: function() {
-      return this.charAt(0).toUpperCase() + this.slice(1);
-    },
-    enumerable: false
-  });
+Object.defineProperty(String.prototype, "capitalize", {
+  value: function () {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+  },
+  enumerable: false,
+});
