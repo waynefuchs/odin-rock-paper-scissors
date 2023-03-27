@@ -28,6 +28,7 @@ function rpsButtonPushed(e) {
     computerSelection.toLocaleLowerCase()
   );
   updateUI();
+  roundResult.focus();
 }
 
 function runTouchAnimation(e) {
