@@ -26,7 +26,9 @@ function rpsButtonPushed(e) {
     playerSelection.toLocaleLowerCase(),
     computerSelection.toLocaleLowerCase()
   );
+  roundResult.ariaLabel = roundResult.textContent;
   updateUI();
+  roundResult.focus();
 }
 
 function runTouchAnimation(e) {
@@ -85,7 +87,7 @@ function playRound(playerSelection, computerSelection) {
     return `It's a draw! Both players picked ${computerSelection.capitalize()}`;
 
   if (computerWins(playerSelection, computerSelection))
-    return `You Lose! ${computerSelection.capitalize()} beats ${playerSelection.capitalize()}`;
+    return `You Lose this round! ${computerSelection.capitalize()} beats ${playerSelection.capitalize()}`;
 
   // When it isn't a draw, and the computer didn't win: Player Wins
   score.player++;

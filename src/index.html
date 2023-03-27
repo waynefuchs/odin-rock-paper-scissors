@@ -42,6 +42,7 @@
             src="rock_small.png"
             id="rock"
             class="rps-button"
+            accesskey="r"
             aria-label="Rock"
           />
         </div>
@@ -51,6 +52,7 @@
             src="paper_small.png"
             id="paper"
             class="rps-button"
+            accesskey="p"
             aria-label="Paper"
           />
         </div>
@@ -60,18 +62,15 @@
             src="scissors_small.png"
             id="scissors"
             class="rps-button"
+            accesskey="s"
             aria-label="Scissors"
           />
         </div>
       </main>
 
-      <!-- For accessibility, This needs to become a modal -->
-      <aside>
-        <p id="round-result"></p>
-      </aside>
+      <aside id="round-result" tabindex="0"></aside>
 
-      <!-- For accessibility, This needs to become a modal -->
-      <p id="game-result"></p>
+      <aside id="game-result" tabindex="0"></aside>
     </section>
   </body>
 
