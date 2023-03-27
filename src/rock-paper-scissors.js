@@ -1,4 +1,3 @@
-// console.log("Add js to page method 1: Hello World!");
 // DOM objects
 const scorePlayer = document.querySelector("#score-player");
 const scoreComputer = document.querySelector("#score-computer");
@@ -28,16 +27,15 @@ function rpsButtonPushed(e) {
     computerSelection.toLocaleLowerCase()
   );
   updateUI();
-  roundResult.focus();
 }
 
 function runTouchAnimation(e) {
-  console.log(e);
-  e.target.classList.add("puke");
+  if (window.matchMedia("(hover: hover)").matches) return;
+  e.target.classList.add("touched");
   e.target.addEventListener(
     "transitionend",
     (e) => {
-      e.target.classList.remove("puke");
+      e.target.classList.remove("touched");
     },
     true
   );
