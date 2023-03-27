@@ -90,6 +90,6 @@ h1 {
   }
 }
 
-.puke {
+.touched {
   transform: scale(var(--icon-large));
 }
