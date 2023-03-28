@@ -3,6 +3,7 @@
 :root {
   --color-bg: #ffdf7a;
   --color-fg: #323232;
+  --color-select: #b7cfe4;
   --icon-small: 0.7;
   --icon-large: 1;
   --icon-duration: 0.15s;
@@ -70,7 +71,7 @@ h1 {
 
 .rps-button {
   transform: scale(var(--icon-small));
-  transition: all var(--icon-duration) ease-in-out;
+  transition: all var(--icon-duration) ease-out;
 
   /* for brief animation on load */
   animation-name: grow;
@@ -87,6 +88,8 @@ h1 {
   }
   to {
     transform: scale(var(--icon-large));
+    background-color: var(--color-select);
+    border-radius: 25%;
   }
 }
 
