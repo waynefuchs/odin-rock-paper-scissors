@@ -16,19 +16,23 @@ let score = {
 
 // Start execution here
 buttons.forEach((button) => button.addEventListener("click", rpsButtonPushed));
-updateUI();
+redrawUserInterface();
 
 function rpsButtonPushed(e) {
   runTouchAnimation(e);
   let playerSelection = this.id;
   let computerSelection = computerPlay();
+
+  UpdateRoundText(playerSelection, computerSelection);
+  redrawUserInterface();
+}
+
+function UpdateRoundText(playerSelection, computerSelection) {
   roundResult.textContent = playRound(
     playerSelection.toLocaleLowerCase(),
     computerSelection.toLocaleLowerCase()
   );
   roundResult.ariaLabel = roundResult.textContent;
-  updateUI();
-  roundResult.focus();
 }
 
 function runTouchAnimation(e) {
@@ -73,7 +77,7 @@ function printScore() {
   console.log(score);
 }
 
-function updateUI() {
+function redrawUserInterface() {
   scorePlayer.textContent = score.player.toString();
   scoreComputer.textContent = score.computer.toString();
   scoreDraw.textContent = score.draw.toString();
@@ -109,7 +113,7 @@ function computerWins(playerSelection, computerSelection) {
     (computerSelection === "scissors" && playerSelection === "paper")
   ) {
     score.computer++;
-    updateUI();
+    redrawUserInterface();
     return true;
   }
   return false;
